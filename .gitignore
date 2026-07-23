@@ -1,0 +1,11 @@
+.vercel/
+.next/
+out/
+node_modules/
+coverage/
+.agent-audit/
+graphify-out/
+.DS_Store
+*.tsbuildinfo
+npm-debug.log*
+.env*
