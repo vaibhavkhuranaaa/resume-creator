@@ -4,10 +4,13 @@
   "private": true,
   "scripts": {
     "dev": "next dev",
+    "prebuild": "npm run catalog:validate",
     "build": "next build",
     "start": "next start",
     "lint": "eslint .",
-    "test": "tsx --test tests/**/*.test.ts"
+    "test": "tsx --test tests/**/*.test.ts",
+    "catalog:sync": "node scripts/sync-approved-catalog.mjs",
+    "catalog:validate": "node scripts/sync-approved-catalog.mjs --check"
   },
   "dependencies": {
     "@fontsource/libre-baskerville": "^5.3.0",

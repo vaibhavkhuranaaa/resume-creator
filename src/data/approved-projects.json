@@ -1,0 +1,166 @@
+{
+  "schemaVersion": 1,
+  "generatedAt": "2026-07-23T20:00:00Z",
+  "projects": [
+    {
+      "slug": "legal-document-intelligence-rag",
+      "title": "Legal Document Intelligence RAG",
+      "summary": "Citation-grounded answers over public Delaware M&A litigation, built end-to-end on Azure.",
+      "outcome": "A citation-required research workflow over a controlled public legal corpus.",
+      "industries": [
+        "Legal technology"
+      ],
+      "categories": [
+        "AI/ML",
+        "Cloud"
+      ],
+      "stack": [
+        "Python",
+        "Azure Document Intelligence",
+        "Azure OpenAI",
+        "Azure AI Search",
+        "Azure Blob Storage",
+        "Streamlit"
+      ],
+      "source": {
+        "repository": "vaibhavkhuranaaa/legal-document-intelligence-rag",
+        "sourceRef": "60545cfc30ecd1af1c53072b381b0309a9524e50",
+        "url": "https://github.com/vaibhavkhuranaaa/legal-document-intelligence-rag"
+      },
+      "deployment": {
+        "provider": "Azure",
+        "status": "release-pending",
+        "runtime": "Azure App Service",
+        "liveUrl": null
+      },
+      "disclosure": {
+        "summary": "Uses public court opinions only. Legal information, not legal advice. The public App Service release is pending recovery and smoke testing.",
+        "classification": "legacy-reviewed"
+      },
+      "evidence": [
+        {
+          "id": "legacy:legal-document-intelligence-rag:metric:1",
+          "kind": "review",
+          "claim": "139 deterministic tests",
+          "source": "vaibhavkhuranaaa/legal-document-intelligence-rag@60545cfc30ecd1af1c53072b381b0309a9524e50",
+          "method": "Reviewed legacy v1 manifest; migrate to a reproducible v2 evidence record.",
+          "result": "139 deterministic tests"
+        },
+        {
+          "id": "legacy:legal-document-intelligence-rag:metric:2",
+          "kind": "review",
+          "claim": "390 approved public chunks",
+          "source": "vaibhavkhuranaaa/legal-document-intelligence-rag@60545cfc30ecd1af1c53072b381b0309a9524e50",
+          "method": "Reviewed legacy v1 manifest; migrate to a reproducible v2 evidence record.",
+          "result": "390 approved public chunks"
+        },
+        {
+          "id": "legacy:legal-document-intelligence-rag:metric:3",
+          "kind": "review",
+          "claim": "Citation-required grounded generation",
+          "source": "vaibhavkhuranaaa/legal-document-intelligence-rag@60545cfc30ecd1af1c53072b381b0309a9524e50",
+          "method": "Reviewed legacy v1 manifest; migrate to a reproducible v2 evidence record.",
+          "result": "Citation-required grounded generation"
+        }
+      ],
+      "portfolio": {
+        "status": "approved",
+        "approvedAt": "2026-07-19",
+        "featured": true,
+        "sortOrder": 20
+      },
+      "narrative": {
+        "recruiterSummary": "Citation-grounded answers over public Delaware M&A litigation, built end-to-end on Azure.",
+        "technicalNarrative": "A citation-required research workflow over a controlled public legal corpus.",
+        "limitations": [
+          "The public App Service release remains pending recovery and smoke testing.",
+          "The corpus is intentionally limited to approved public opinions."
+        ],
+        "scalabilityRoadmap": []
+      },
+      "resumeBulletCandidates": []
+    },
+    {
+      "slug": "legal-discovery-intelligence-graph",
+      "title": "Legal Discovery Intelligence Graph",
+      "summary": "A deployed Graph RAG investigation workspace with cited evidence, entity graphs, and reproducible evaluation.",
+      "outcome": "A live investigation workspace combining graph and vector retrieval with cited evidence.",
+      "industries": [
+        "Legal technology"
+      ],
+      "categories": [
+        "AI/ML",
+        "Analytics",
+        "Data Engineering"
+      ],
+      "stack": [
+        "Python",
+        "Streamlit",
+        "LangChain",
+        "sentence-transformers",
+        "PostgreSQL + pgvector",
+        "Neo4j AuraDB",
+        "Supabase",
+        "Plotly"
+      ],
+      "source": {
+        "repository": "vaibhavkhuranaaa/legal-discovery-intelligence-graph",
+        "sourceRef": "8879c55997a475ea08b158fb689d1d7698d1fb16",
+        "url": "https://github.com/vaibhavkhuranaaa/legal-discovery-intelligence-graph"
+      },
+      "deployment": {
+        "provider": "Streamlit Community Cloud",
+        "status": "live",
+        "runtime": "Streamlit",
+        "liveUrl": "https://legal-discovery-intelligence-graph-ma2dfvnresf84ytk4nzelm.streamlit.app/"
+      },
+      "disclosure": {
+        "summary": "All documents, people, companies, amounts, and events are synthetic and fictional. The displayed results are reproducible evaluation results on a templated corpus.",
+        "classification": "legacy-reviewed"
+      },
+      "evidence": [
+        {
+          "id": "legacy:legal-discovery-intelligence-graph:metric:1",
+          "kind": "review",
+          "claim": "Entity extraction F1 0.889 strict",
+          "source": "vaibhavkhuranaaa/legal-discovery-intelligence-graph@8879c55997a475ea08b158fb689d1d7698d1fb16",
+          "method": "Reviewed legacy v1 manifest; migrate to a reproducible v2 evidence record.",
+          "result": "Entity extraction F1 0.889 strict"
+        },
+        {
+          "id": "legacy:legal-discovery-intelligence-graph:metric:2",
+          "kind": "review",
+          "claim": "Graph retrieval R@5 0.929",
+          "source": "vaibhavkhuranaaa/legal-discovery-intelligence-graph@8879c55997a475ea08b158fb689d1d7698d1fb16",
+          "method": "Reviewed legacy v1 manifest; migrate to a reproducible v2 evidence record.",
+          "result": "Graph retrieval R@5 0.929"
+        },
+        {
+          "id": "legacy:legal-discovery-intelligence-graph:metric:3",
+          "kind": "review",
+          "claim": "Graph relationship hit@5 0.833",
+          "source": "vaibhavkhuranaaa/legal-discovery-intelligence-graph@8879c55997a475ea08b158fb689d1d7698d1fb16",
+          "method": "Reviewed legacy v1 manifest; migrate to a reproducible v2 evidence record.",
+          "result": "Graph relationship hit@5 0.833"
+        }
+      ],
+      "portfolio": {
+        "status": "approved",
+        "approvedAt": "2026-07-19",
+        "featured": true,
+        "sortOrder": 10
+      },
+      "narrative": {
+        "recruiterSummary": "A deployed Graph RAG investigation workspace with cited evidence, entity graphs, and reproducible evaluation.",
+        "technicalNarrative": "A live investigation workspace combining graph and vector retrieval with cited evidence.",
+        "limitations": [
+          "The reproducible corpus is synthetic, so results are not claims about real legal matters.",
+          "Graph and vector systems are retained together to support complementary retrieval paths."
+        ],
+        "scalabilityRoadmap": []
+      },
+      "resumeBulletCandidates": []
+    }
+  ],
+  "importedFrom": "/Users/vaibhavkhurana/Development/portfolio-site/public/data/approved-projects.json"
+}

@@ -1,7 +1,7 @@
 import assert from "node:assert/strict";
 import test from "node:test";
 import { createDefaultResume } from "../src/lib/defaults";
-import { getCatalogProject, getVerifiedProjectLiveUrl } from "../src/lib/catalog";
+import { catalogMetadata, getCatalogProject, getProjectVariant, getVerifiedProjectLiveUrl } from "../src/lib/catalog";
 import { formatDate, migrateResumeDocument, parseLegacyDate, validateResumeDocument } from "../src/lib/schema";
 
 test("every resume type has a valid catalog-backed default with no more than three projects", () => {
@@ -31,10 +31,27 @@ test("V1 exports migrate contact links, dates, technologies, and bullets into V2
   assert.equal("githubUrl" in result.value.projects[0], false);
 });
 
-test("only catalog verified deployments can be used as project-title links", () => {
-  assert.equal(getVerifiedProjectLiveUrl("legal-discovery-intelligence-graph"), "https://legal-discovery-intelligence-graph.onrender.com");
+test("only live-profile verified deployments can be used as project-title links", () => {
+  assert.equal(getVerifiedProjectLiveUrl("legal-discovery-intelligence-graph"), null);
   assert.equal(getVerifiedProjectLiveUrl("financial-payments-fraud-pipeline"), null);
   assert.equal(getVerifiedProjectLiveUrl("unknown-project"), null);
+});
+
+test("catalog metadata pins every project and every resume bullet resolves to approved evidence", () => {
+  assert.match(catalogMetadata.generatedAt, /^\d{4}-\d{2}-\d{2}T/);
+  assert.equal(catalogMetadata.sourceRefs.every((project) => /^[0-9a-f]{40}$/.test(project.sourceRef)), true);
+  for (const type of ["legal", "finance", "healthcare", "enterprise", "general"] as const) {
+    for (const project of createDefaultResume(type).projects) {
+      const catalogProject = getCatalogProject(project.catalogSlug);
+      const variant = getProjectVariant(project.catalogSlug, type);
+      assert.ok(catalogProject);
+      assert.ok(variant);
+      for (const bullet of variant.bullets) {
+        assert.equal(bullet.evidenceRefs.length > 0, true);
+        assert.equal(bullet.evidenceRefs.every((reference) => catalogProject.evidenceIds.includes(reference)), true);
+      }
+    }
+  }
 });
 
 test("dates render consistently and reject inverted ranges", () => {

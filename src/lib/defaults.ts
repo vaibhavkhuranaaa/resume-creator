@@ -1,4 +1,4 @@
-import { getCatalogProject, getProjectVariant } from "@/lib/catalog";
+import { getCatalogProject, getProjectVariant, projectCatalog } from "@/lib/catalog";
 import { makeId, parseLegacyDate, type ResumeDocument, type ResumeProject, type ResumeType } from "@/lib/schema";
 
 const selectedProjects: Record<ResumeType, string[]> = {
@@ -14,7 +14,13 @@ const makeProject = (slug: string, resumeType: ResumeType): ResumeProject => {
   const content = getProjectVariant(slug, resumeType);
   if (!project || !content) throw new Error(`Default project ${slug} is not in the reviewed catalog.`);
   const technologies = content.technologyOrder ? [...content.technologyOrder, ...project.technologies.filter((item) => !content.technologyOrder!.includes(item))] : project.technologies;
-  return { id: makeId(), catalogSlug: slug, title: project.title, technologies, bullets: content.bullets.map((text) => ({ id: makeId(), text })) };
+  return {
+    id: makeId(),
+    catalogSlug: slug,
+    title: project.title,
+    technologies,
+    bullets: content.bullets.map((bullet) => ({ id: makeId(), text: bullet.text })),
+  };
 };
 
 export function createDefaultResume(resumeType: ResumeType = "legal"): ResumeDocument {
@@ -37,7 +43,11 @@ export function createDefaultResume(resumeType: ResumeType = "legal"): ResumeDoc
       { id: makeId(), organization: "Hellowiz", title: "Data Analyst (Volunteer)", location: "Chicago, IL", date: parseLegacyDate("06/2024 - 09/2024"), bullets: [{ id: makeId(), text: "Cut cross-tenant reporting errors 23% by realigning schemas across NGO client databases and building AWS Glue pipelines into a governed multi-tenant analytics layer in S3." }] },
       { id: makeId(), organization: "University of Illinois Chicago", title: "Graduate Teaching Assistant & LTS Support", location: "Chicago, IL", date: parseLegacyDate("08/2022 - 05/2024"), bullets: [{ id: makeId(), text: "Restructured R lab curriculum on regression and machine learning fundamentals for 200+ graduate students, and designed a real-data default-risk project used for grading across sections." }] },
     ],
-    projects: selectedProjects[resumeType].map((slug) => makeProject(slug, resumeType)),
+    projects: (() => {
+      const selected = selectedProjects[resumeType].filter((slug) => getCatalogProject(slug));
+      const fallback = selected.length ? selected : projectCatalog.slice(0, 2).map((project) => project.slug);
+      return fallback.map((slug) => makeProject(slug, resumeType));
+    })(),
     skillGroups: [
       { id: makeId(), label: "Languages", items: ["Python", "SQL", "R", "Pandas", "NumPy", "PySpark", "DAX", "Git"] },
       { id: makeId(), label: "Cloud & Data Engineering", items: ["AWS", "Azure", "Snowflake", "dbt", "Informatica DQ", "Power Query", "Power Automate", "VBA", "UKG Pro", "Qualtrics"] },

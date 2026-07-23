@@ -37,7 +37,7 @@ export default function Home() {
     if (draft.projects.some((project) => project.catalogSlug === slug)) return;
     const project = getCatalogProject(slug); const variant = getProjectVariant(slug, draft.resumeType);
     if (!project || !variant) return;
-    draft.projects.push({ id: makeId(), catalogSlug: slug, title: project.title, technologies: variant.technologyOrder ? [...variant.technologyOrder, ...project.technologies.filter((item) => !variant.technologyOrder!.includes(item))] : [...project.technologies], bullets: variant.bullets.map((text) => ({ id: makeId(), text })) });
+    draft.projects.push({ id: makeId(), catalogSlug: slug, title: project.title, technologies: variant.technologyOrder ? [...variant.technologyOrder, ...project.technologies.filter((item) => !variant.technologyOrder!.includes(item))] : [...project.technologies], bullets: variant.bullets.map((bullet) => ({ id: makeId(), text: bullet.text })) });
   });
   const importFile = (event: ChangeEvent<HTMLInputElement>) => {
     const file = event.target.files?.[0]; if (!file) return;
