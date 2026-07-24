@@ -1,7 +1,169 @@
 {
   "schemaVersion": 1,
-  "generatedAt": "2026-07-24T18:12:49.203Z",
+  "generatedAt": "2026-07-24T18:52:24.929Z",
   "projects": [
+    {
+      "slug": "legal-discovery-intelligence-graph",
+      "title": "Legal Discovery Intelligence Graph",
+      "summary": "A deployed Graph RAG investigation workspace with cited evidence, entity graphs, and reproducible evaluation.",
+      "outcome": "A public synthetic-matter investigation workflow combines vector and graph retrieval, cited evidence, timelines, privilege/PII flags, calibrated refusal, and an auditable case brief.",
+      "industries": [
+        "Legal technology"
+      ],
+      "categories": [
+        "AI/ML",
+        "Analytics",
+        "Data Engineering"
+      ],
+      "stack": [
+        "Python",
+        "Flask",
+        "LangChain",
+        "sentence-transformers",
+        "ONNX Runtime",
+        "PostgreSQL + pgvector",
+        "Neo4j AuraDB",
+        "Supabase",
+        "Plotly"
+      ],
+      "source": {
+        "repository": "vaibhavkhuranaaa/legal-discovery-intelligence-graph",
+        "sourceRef": "20a41a19c145e118a4aea3b7dba5256274bf0714",
+        "url": "https://github.com/vaibhavkhuranaaa/legal-discovery-intelligence-graph"
+      },
+      "deployment": {
+        "provider": "Render",
+        "status": "live",
+        "runtime": "Flask + gunicorn with an ONNX embedding backend",
+        "exposure": "anonymous",
+        "productionClaim": false,
+        "verifiedAt": "2026-07-23T20:52:19Z",
+        "expiresAt": null,
+        "evidenceRefs": [
+          "deployment.render-root"
+        ],
+        "liveUrl": "https://legal-discovery-intelligence-graph.onrender.com"
+      },
+      "disclosure": {
+        "source": "Repository-generated Project Falcon synthetic legal-discovery corpus, seed 42",
+        "license": "Repository project license; no third-party client or matter data",
+        "classification": "synthetic",
+        "permittedUse": "Portfolio demonstration, deterministic evaluation, and engineering research",
+        "includedFields": [
+          "Fictional documents, entities, events, amounts, relationships, and planted evidence",
+          "Synthetic privilege and PII-like labels used solely for evaluation"
+        ],
+        "excludedFields": [
+          "Real client, employee, custodian, matter, communication, and personal data",
+          "Production legal advice, privilege determinations, and discovery decisions"
+        ],
+        "deployedArtifactContents": [
+          "Synthetic corpus-derived indexes and graph records",
+          "Read-only Flask application and committed aggregate evaluation artifacts",
+          "No real discovery files or client data"
+        ]
+      },
+      "evidence": [
+        {
+          "id": "evaluation.entity-extraction",
+          "kind": "evaluation",
+          "claim": "Entity-mention extraction achieved micro F1 0.887 strict on the committed synthetic corpus.",
+          "source": "artifacts/extraction_metrics.json",
+          "method": "One-to-one strict span matching against generator-emitted gold labels",
+          "result": 0.887,
+          "scope": "2,223 entity mentions in a deterministic 455-document synthetic corpus, seed 42",
+          "observedAt": "2026-07-15T00:00:00Z",
+          "environment": "Local deterministic evaluation",
+          "classification": "synthetic",
+          "execution": "deterministic",
+          "caveat": "Clean templated text materially overstates expected performance on real discovery documents."
+        },
+        {
+          "id": "evaluation.hybrid-retrieval",
+          "kind": "evaluation",
+          "claim": "Hybrid retrieval achieved R@10 0.857 and graph expansion improved relationship hit@5 to 0.833.",
+          "source": "artifacts/retrieval_metrics.json",
+          "method": "Versioned labeled-query evaluation comparing vector-only and graph-expanded retrieval",
+          "result": "R@10 0.857 / relationship hit@5 0.833",
+          "scope": "38 categorized retrieval queries over the 455-document synthetic corpus",
+          "observedAt": "2026-07-15T00:00:00Z",
+          "environment": "Local integration evaluation against configured vector and graph stores",
+          "classification": "synthetic",
+          "execution": "integration",
+          "caveat": "Graph expansion improves relationship queries but can dilute dense-corpus ranking at larger k."
+        },
+        {
+          "id": "evaluation.privilege-pii-flags",
+          "kind": "evaluation",
+          "claim": "Privilege and synthetic-PII rules achieved F1 1.0 on clean templated text.",
+          "source": "artifacts/flags_metrics.json",
+          "method": "Document-level rule evaluation against synthetic gold labels",
+          "result": 1
+        },
+        {
+          "id": "deployment.render-root",
+          "kind": "deployment",
+          "claim": "The current Render application root returned HTTP 200.",
+          "source": "evidence/deployment/live-check.json",
+          "method": "Read-only HTTP request with redirects followed; no user data submitted",
+          "result": true,
+          "scope": "Application root only",
+          "observedAt": "2026-07-23T20:52:19Z",
+          "environment": "Render public endpoint",
+          "classification": "synthetic",
+          "execution": "live",
+          "caveat": "HTTP reachability is not availability, confidentiality, security, or production-readiness evidence."
+        },
+        {
+          "id": "disclosure.synthetic-corpus",
+          "kind": "disclosure",
+          "claim": "The corpus, gold labels, people, organizations, identifiers, and events are generated and fictional.",
+          "source": "docs/DATA_AND_EVALUATION.md",
+          "method": "Versioned generator and data/evaluation documentation review",
+          "result": "synthetic"
+        }
+      ],
+      "portfolio": {
+        "status": "approved",
+        "approvedAt": "2026-07-24",
+        "featured": true,
+        "sortOrder": 10
+      },
+      "narrative": {
+        "recruiterSummary": "Legal discovery teams need to connect people, events, documents, and evidence without losing the source trail. This project demonstrates that workflow on a fully fictional matter: reviewers can search, traverse relationships, inspect a timeline, and open cited documents while the product clearly distinguishes evidence from generated structure.",
+        "technicalNarrative": "A deterministic generator emits a 455-document corpus and gold labels. Offline pipelines extract entities/events, create pgvector embeddings, and load Neo4j relationships. The deployed Flask app uses an ONNX embedding backend within Render's memory limit, fuses vector and graph retrieval, applies a calibrated refusal threshold, and renders cited results, graphs, timelines, flags, and evaluation artifacts.",
+        "limitations": [
+          "Synthetic templated text is materially cleaner than real discovery data.",
+          "The public demo has no real-client security or matter-isolation posture.",
+          "Free-tier services can sleep or pause and do not establish an availability SLO.",
+          "Privilege/PII flags are research aids, not legal or privacy determinations."
+        ],
+        "scalabilityRoadmap": [
+          "Add authenticated matter isolation, role-based access, audit retention, and encrypted document storage",
+          "Introduce OCR and robust parsing for scans, forwarded chains, and production document variance",
+          "Move ingestion and indexing to background workers with versioned index promotion",
+          "Add real-world benchmark sets under appropriate legal/data agreements and revalidate thresholds",
+          "Retire free-tier keep-alive behavior under an owner-approved paid reliability envelope"
+        ]
+      },
+      "resumeBulletCandidates": [
+        {
+          "role": "AI Engineer",
+          "bullet": "Built a deployed Graph RAG investigation workspace with Flask, pgvector, Neo4j, ONNX embeddings, cited evidence, and calibrated refusal, achieving 0.887 strict entity F1 on a 455-document synthetic corpus.",
+          "evidenceRefs": [
+            "evaluation.entity-extraction",
+            "deployment.render-root"
+          ]
+        },
+        {
+          "role": "Data Scientist",
+          "bullet": "Evaluated vector and graph-expanded retrieval by query category, improving relationship-query hit@5 from 0.500 to 0.833 while documenting dense-corpus tradeoffs.",
+          "evidenceRefs": [
+            "evaluation.hybrid-retrieval"
+          ]
+        }
+      ]
+    },
     {
       "slug": "legal-document-intelligence-rag",
       "title": "Legal Document Intelligence RAG",
@@ -158,168 +320,6 @@
           "bullet": "Versioned and evaluated a 45-question legal retrieval benchmark, recording 1.0 retrieval hit rate@8 and 1.0 citation-provenance validity while explicitly separating those metrics from legal-answer accuracy.",
           "evidenceRefs": [
             "evaluation.release-v2"
-          ]
-        }
-      ]
-    },
-    {
-      "slug": "legal-discovery-intelligence-graph",
-      "title": "Legal Discovery Intelligence Graph",
-      "summary": "A deployed Graph RAG investigation workspace with cited evidence, entity graphs, and reproducible evaluation.",
-      "outcome": "A public synthetic-matter investigation workflow combines vector and graph retrieval, cited evidence, timelines, privilege/PII flags, calibrated refusal, and an auditable case brief.",
-      "industries": [
-        "Legal technology"
-      ],
-      "categories": [
-        "AI/ML",
-        "Analytics",
-        "Data Engineering"
-      ],
-      "stack": [
-        "Python",
-        "Flask",
-        "LangChain",
-        "sentence-transformers",
-        "ONNX Runtime",
-        "PostgreSQL + pgvector",
-        "Neo4j AuraDB",
-        "Supabase",
-        "Plotly"
-      ],
-      "source": {
-        "repository": "vaibhavkhuranaaa/legal-discovery-intelligence-graph",
-        "sourceRef": "dbf05cd7413d684b74366ce9303afc88aeafbdda",
-        "url": "https://github.com/vaibhavkhuranaaa/legal-discovery-intelligence-graph"
-      },
-      "deployment": {
-        "provider": "Render",
-        "status": "live",
-        "runtime": "Flask + gunicorn with an ONNX embedding backend",
-        "exposure": "anonymous",
-        "productionClaim": false,
-        "verifiedAt": "2026-07-23T20:52:19Z",
-        "expiresAt": null,
-        "evidenceRefs": [
-          "deployment.render-root"
-        ],
-        "liveUrl": "https://legal-discovery-intelligence-graph.onrender.com"
-      },
-      "disclosure": {
-        "source": "Repository-generated Project Falcon synthetic legal-discovery corpus, seed 42",
-        "license": "Repository project license; no third-party client or matter data",
-        "classification": "synthetic",
-        "permittedUse": "Portfolio demonstration, deterministic evaluation, and engineering research",
-        "includedFields": [
-          "Fictional documents, entities, events, amounts, relationships, and planted evidence",
-          "Synthetic privilege and PII-like labels used solely for evaluation"
-        ],
-        "excludedFields": [
-          "Real client, employee, custodian, matter, communication, and personal data",
-          "Production legal advice, privilege determinations, and discovery decisions"
-        ],
-        "deployedArtifactContents": [
-          "Synthetic corpus-derived indexes and graph records",
-          "Read-only Flask application and committed aggregate evaluation artifacts",
-          "No real discovery files or client data"
-        ]
-      },
-      "evidence": [
-        {
-          "id": "evaluation.entity-extraction",
-          "kind": "evaluation",
-          "claim": "Entity-mention extraction achieved micro F1 0.887 strict on the committed synthetic corpus.",
-          "source": "artifacts/extraction_metrics.json",
-          "method": "One-to-one strict span matching against generator-emitted gold labels",
-          "result": 0.887,
-          "scope": "2,223 entity mentions in a deterministic 455-document synthetic corpus, seed 42",
-          "observedAt": "2026-07-15T00:00:00Z",
-          "environment": "Local deterministic evaluation",
-          "classification": "synthetic",
-          "execution": "deterministic",
-          "caveat": "Clean templated text materially overstates expected performance on real discovery documents."
-        },
-        {
-          "id": "evaluation.hybrid-retrieval",
-          "kind": "evaluation",
-          "claim": "Hybrid retrieval achieved R@10 0.857 and graph expansion improved relationship hit@5 to 0.833.",
-          "source": "artifacts/retrieval_metrics.json",
-          "method": "Versioned labeled-query evaluation comparing vector-only and graph-expanded retrieval",
-          "result": "R@10 0.857 / relationship hit@5 0.833",
-          "scope": "38 categorized retrieval queries over the 455-document synthetic corpus",
-          "observedAt": "2026-07-15T00:00:00Z",
-          "environment": "Local integration evaluation against configured vector and graph stores",
-          "classification": "synthetic",
-          "execution": "integration",
-          "caveat": "Graph expansion improves relationship queries but can dilute dense-corpus ranking at larger k."
-        },
-        {
-          "id": "evaluation.privilege-pii-flags",
-          "kind": "evaluation",
-          "claim": "Privilege and synthetic-PII rules achieved F1 1.0 on clean templated text.",
-          "source": "artifacts/flags_metrics.json",
-          "method": "Document-level rule evaluation against synthetic gold labels",
-          "result": 1
-        },
-        {
-          "id": "deployment.render-root",
-          "kind": "deployment",
-          "claim": "The current Render application root returned HTTP 200.",
-          "source": "evidence/deployment/live-check.json",
-          "method": "Read-only HTTP request with redirects followed; no user data submitted",
-          "result": true,
-          "scope": "Application root only",
-          "observedAt": "2026-07-23T20:52:19Z",
-          "environment": "Render public endpoint",
-          "classification": "synthetic",
-          "execution": "live",
-          "caveat": "HTTP reachability is not availability, confidentiality, security, or production-readiness evidence."
-        },
-        {
-          "id": "disclosure.synthetic-corpus",
-          "kind": "disclosure",
-          "claim": "The corpus, gold labels, people, organizations, identifiers, and events are generated and fictional.",
-          "source": "docs/DATA_AND_EVALUATION.md",
-          "method": "Versioned generator and data/evaluation documentation review",
-          "result": "synthetic"
-        }
-      ],
-      "portfolio": {
-        "status": "approved",
-        "approvedAt": "2026-07-24",
-        "featured": true,
-        "sortOrder": 10
-      },
-      "narrative": {
-        "recruiterSummary": "Legal discovery teams need to connect people, events, documents, and evidence without losing the source trail. This project demonstrates that workflow on a fully fictional matter: reviewers can search, traverse relationships, inspect a timeline, and open cited documents while the product clearly distinguishes evidence from generated structure.",
-        "technicalNarrative": "A deterministic generator emits a 455-document corpus and gold labels. Offline pipelines extract entities/events, create pgvector embeddings, and load Neo4j relationships. The deployed Flask app uses an ONNX embedding backend within Render's memory limit, fuses vector and graph retrieval, applies a calibrated refusal threshold, and renders cited results, graphs, timelines, flags, and evaluation artifacts.",
-        "limitations": [
-          "Synthetic templated text is materially cleaner than real discovery data.",
-          "The public demo has no real-client security or matter-isolation posture.",
-          "Free-tier services can sleep or pause and do not establish an availability SLO.",
-          "Privilege/PII flags are research aids, not legal or privacy determinations."
-        ],
-        "scalabilityRoadmap": [
-          "Add authenticated matter isolation, role-based access, audit retention, and encrypted document storage",
-          "Introduce OCR and robust parsing for scans, forwarded chains, and production document variance",
-          "Move ingestion and indexing to background workers with versioned index promotion",
-          "Add real-world benchmark sets under appropriate legal/data agreements and revalidate thresholds",
-          "Retire free-tier keep-alive behavior under an owner-approved paid reliability envelope"
-        ]
-      },
-      "resumeBulletCandidates": [
-        {
-          "role": "AI Engineer",
-          "bullet": "Built a deployed Graph RAG investigation workspace with Flask, pgvector, Neo4j, ONNX embeddings, cited evidence, and calibrated refusal, achieving 0.887 strict entity F1 on a 455-document synthetic corpus.",
-          "evidenceRefs": [
-            "evaluation.entity-extraction",
-            "deployment.render-root"
-          ]
-        },
-        {
-          "role": "Data Scientist",
-          "bullet": "Evaluated vector and graph-expanded retrieval by query category, improving relationship-query hit@5 from 0.500 to 0.833 while documenting dense-corpus tradeoffs.",
-          "evidenceRefs": [
-            "evaluation.hybrid-retrieval"
           ]
         }
       ]
@@ -513,5 +513,5 @@
       ]
     }
   ],
-  "importedFrom": "/Users/vaibhavkhurana/Development/portfolio-site/public/data/approved-projects.json"
+  "importedFrom": "https://portfolio-reeper1.vercel.app/data/approved-projects.json"
 }
