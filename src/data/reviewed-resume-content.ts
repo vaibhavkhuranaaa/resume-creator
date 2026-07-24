@@ -19,7 +19,7 @@ export type ReviewedResumeContent = {
 // deployment state, and evidence records come only from the generated catalog.
 export const reviewedResumeContent: Record<string, ReviewedResumeContent> = {
   "legal-discovery-intelligence-graph": {
-    sourceRef: "d807df697e0e77274435b89008dd631a7cb391d3",
+    sourceRef: "f623ef559d8ac224354df42516346f44866515ae",
     variants: {
       legal: {
         bullets: [
@@ -48,7 +48,7 @@ export const reviewedResumeContent: Record<string, ReviewedResumeContent> = {
     },
   },
   "legal-document-intelligence-rag": {
-    sourceRef: "ec1853d200aa7f43ac16d909228b31876d8a648a",
+    sourceRef: "bc485d84eb4b4a6ee518787a832c6693d82c0d7f",
     variants: {
       legal: {
         bullets: [
@@ -76,7 +76,7 @@ export const reviewedResumeContent: Record<string, ReviewedResumeContent> = {
     },
   },
   "text-to-sql-guardrails": {
-    sourceRef: "3850aa48e3b40e2cd697f4fd902422efa28c593b",
+    sourceRef: "9544536cb6355cf1ea4d34fbbc73b4fa645afdfe",
     variants: {
       finance: {
         bullets: [
