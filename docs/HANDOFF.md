@@ -12,4 +12,6 @@ The formerly unversioned app has a clean baseline commit and is registered in `p
 4. Review any source-SHA mismatch in `src/data/reviewed-resume-content.ts`; update wording only after checking the new evidence.
 5. Do not restore removed unapproved projects as hard-coded facts. They re-enter only after portfolio approval produces a catalog record.
 
-No remote, deployment, or publication action is implied by this handoff.
+Stable synchronization commit: `eac0e4e64b0e95922084fc0f3bb000914841206e`. Roll it back only through a reviewed `git revert eac0e4e64b0e95922084fc0f3bb000914841206e`; do not reset to `4da9d21f4a8b85e4c1650460a818deec011d7f08`.
+
+Next action: keep the catalog synchronized from portfolio-site and re-run all checks after any exact-SHA approval change. No remote, deployment, or publication action is implied by this handoff.
