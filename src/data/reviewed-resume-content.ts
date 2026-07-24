@@ -19,7 +19,7 @@ export type ReviewedResumeContent = {
 // deployment state, and evidence records come only from the generated catalog.
 export const reviewedResumeContent: Record<string, ReviewedResumeContent> = {
   "legal-discovery-intelligence-graph": {
-    sourceRef: "fb1d0a731879b743e03eeca06e4b8120d573b66b",
+    sourceRef: "dbf05cd7413d684b74366ce9303afc88aeafbdda",
     variants: {
       legal: {
         bullets: [
