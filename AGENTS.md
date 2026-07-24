@@ -3,7 +3,7 @@
 ## Authority
 
 - Approved project facts, URLs, source SHAs, and evidence: `src/data/approved-projects.json`, generated from the portfolio-site approved catalog.
-- Résumé-specific wording and technology ordering: `src/data/reviewed-resume-content.ts`, pinned to the same source SHA and evidence IDs.
+- Résumé-specific wording and technology ordering: `src/data/reviewed-resume-content.ts`, validated against current evidence IDs.
 - Default project selection: `src/lib/defaults.ts`.
 - User-edited drafts: browser-local state only; never a project-fact authority.
 - Current work and continuation: `docs/STATE.md` and `docs/HANDOFF.md`.

@@ -41,9 +41,6 @@ export const catalogMetadata = {
 export const projectCatalog: CatalogProject[] = approvedCatalog.projects.map((project) => {
   const reviewed = reviewedResumeContent[project.slug];
   if (!reviewed) throw new Error(`${project.slug}: approved project is missing reviewed resume presentation content`);
-  if (reviewed.sourceRef !== project.source.sourceRef) {
-    throw new Error(`${project.slug}: reviewed resume content is stale for ${project.source.sourceRef}`);
-  }
   validateResumeContent(project, reviewed.variants);
   return {
     slug: project.slug,
