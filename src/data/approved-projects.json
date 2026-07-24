@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "generatedAt": "2026-07-24T04:28:00.000Z",
+  "generatedAt": "2026-07-24T13:18:47.767Z",
   "projects": [
     {
       "slug": "legal-document-intelligence-rag",
@@ -24,7 +24,7 @@
       ],
       "source": {
         "repository": "vaibhavkhuranaaa/legal-document-intelligence-rag",
-        "sourceRef": "feeefeba500881f6624edf984340f618b2b41bb8",
+        "sourceRef": "ec1853d200aa7f43ac16d909228b31876d8a648a",
         "url": "https://github.com/vaibhavkhuranaaa/legal-document-intelligence-rag"
       },
       "deployment": {
@@ -68,7 +68,16 @@
           "claim": "The 45-question release benchmark recorded retrieval hit rate@8 1.0 and citation-provenance validity 1.0.",
           "source": "data/evaluation/latest.json",
           "method": "Run the versioned gold-qa-v2-delaware-expansion evaluation against the configured promoted retrieval index.",
-          "result": "retrieval 1.0 / citation provenance 1.0"
+          "result": "retrieval 1.0 / citation provenance 1.0",
+          "scope": "45-question gold-qa-v2-delaware-expansion benchmark over the promoted 3,055-chunk public index",
+          "observedAt": "2026-07-23T00:00:00Z",
+          "environment": "Azure AI Search promoted r3 index",
+          "classification": "public",
+          "execution": "integration",
+          "caveat": "The benchmark measures retrieval hit rate and citation provenance, not legal-answer correctness.",
+          "counts": {
+            "total": 45
+          }
         },
         {
           "id": "deployment.azure-root",
@@ -76,7 +85,13 @@
           "claim": "The current Azure App Service application root returned HTTP 200.",
           "source": "evidence/deployment/live-check.json",
           "method": "Read-only HTTP request with redirects followed; no user data submitted.",
-          "result": true
+          "result": true,
+          "scope": "Azure App Service application root only",
+          "observedAt": "2026-07-23T20:57:44Z",
+          "environment": "Azure App Service public endpoint",
+          "classification": "public",
+          "execution": "live",
+          "caveat": "HTTP reachability is not availability, confidentiality, security, or production-readiness evidence."
         },
         {
           "id": "disclosure.public-corpus",
@@ -92,7 +107,18 @@
           "claim": "The repository test suite passed locally when source import resolution was made explicit.",
           "source": "docs/STATE.md",
           "method": "Run `PYTHONPATH=src .venv/bin/python -m pytest -q` after detecting stale editable-install paths in the generated virtual environment.",
-          "result": "178 passed"
+          "result": "178 passed",
+          "scope": "Repository unit and integration test suite",
+          "observedAt": "2026-07-23T00:00:00Z",
+          "environment": "Local Python 3.12 virtual environment",
+          "classification": "public",
+          "execution": "local",
+          "caveat": "Passing repository tests does not establish production availability or legal-answer accuracy.",
+          "counts": {
+            "total": 178,
+            "passed": 178,
+            "failed": 0
+          }
         }
       ],
       "portfolio": {
@@ -162,7 +188,7 @@
       ],
       "source": {
         "repository": "vaibhavkhuranaaa/legal-discovery-intelligence-graph",
-        "sourceRef": "c893da65f17121cf8616f1865f946efec2cf935d",
+        "sourceRef": "d807df697e0e77274435b89008dd631a7cb391d3",
         "url": "https://github.com/vaibhavkhuranaaa/legal-discovery-intelligence-graph"
       },
       "deployment": {
@@ -204,7 +230,13 @@
           "claim": "Entity-mention extraction achieved micro F1 0.887 strict on the committed synthetic corpus.",
           "source": "artifacts/extraction_metrics.json",
           "method": "One-to-one strict span matching against generator-emitted gold labels",
-          "result": 0.887
+          "result": 0.887,
+          "scope": "2,223 entity mentions in a deterministic 455-document synthetic corpus, seed 42",
+          "observedAt": "2026-07-15T00:00:00Z",
+          "environment": "Local deterministic evaluation",
+          "classification": "synthetic",
+          "execution": "deterministic",
+          "caveat": "Clean templated text materially overstates expected performance on real discovery documents."
         },
         {
           "id": "evaluation.hybrid-retrieval",
@@ -212,7 +244,13 @@
           "claim": "Hybrid retrieval achieved R@10 0.857 and graph expansion improved relationship hit@5 to 0.833.",
           "source": "artifacts/retrieval_metrics.json",
           "method": "Versioned labeled-query evaluation comparing vector-only and graph-expanded retrieval",
-          "result": "R@10 0.857 / relationship hit@5 0.833"
+          "result": "R@10 0.857 / relationship hit@5 0.833",
+          "scope": "38 categorized retrieval queries over the 455-document synthetic corpus",
+          "observedAt": "2026-07-15T00:00:00Z",
+          "environment": "Local integration evaluation against configured vector and graph stores",
+          "classification": "synthetic",
+          "execution": "integration",
+          "caveat": "Graph expansion improves relationship queries but can dilute dense-corpus ranking at larger k."
         },
         {
           "id": "evaluation.privilege-pii-flags",
@@ -228,7 +266,13 @@
           "claim": "The current Render application root returned HTTP 200.",
           "source": "evidence/deployment/live-check.json",
           "method": "Read-only HTTP request with redirects followed; no user data submitted",
-          "result": true
+          "result": true,
+          "scope": "Application root only",
+          "observedAt": "2026-07-23T20:52:19Z",
+          "environment": "Render public endpoint",
+          "classification": "synthetic",
+          "execution": "live",
+          "caveat": "HTTP reachability is not availability, confidentiality, security, or production-readiness evidence."
         },
         {
           "id": "disclosure.synthetic-corpus",
@@ -306,7 +350,7 @@
       ],
       "source": {
         "repository": "vaibhavkhuranaaa/text-to-sql-guardrails",
-        "sourceRef": "9b05287ce2598ad82920fc1c1dd19c1b62aec3f9",
+        "sourceRef": "3850aa48e3b40e2cd697f4fd902422efa28c593b",
         "url": "https://github.com/vaibhavkhuranaaa/text-to-sql-guardrails"
       },
       "deployment": {
@@ -353,7 +397,18 @@
           "claim": "All 18 deterministic policy cases matched their expected trusted or refused outcomes.",
           "source": "evaluation/report.json",
           "method": "uv run python scripts/run_evaluation.py against the committed synthetic fixture",
-          "result": "18/18 expected outcomes"
+          "result": "18/18 expected outcomes",
+          "scope": "18 trusted and refused cases over the committed synthetic fixture",
+          "observedAt": "2026-07-24T04:25:22Z",
+          "environment": "Local deterministic evaluation",
+          "classification": "synthetic",
+          "execution": "deterministic",
+          "caveat": "The fixture and case set are intentionally bounded and do not establish open-ended semantic correctness.",
+          "counts": {
+            "total": 18,
+            "passed": 18,
+            "failed": 0
+          }
         },
         {
           "id": "deployment.temporary-demo",
@@ -361,7 +416,18 @@
           "claim": "Six status-only public route, fixture-boundary, and deployed-control checks passed for the anonymous temporary demo.",
           "source": "evidence/deployment/temporary-demo.json",
           "method": "HTTP checks with response bodies limited to status and disclosed fixture metadata",
-          "result": "revision 0000007 / 6 checks passed"
+          "result": "revision 0000007 / 6 checks passed",
+          "scope": "Root, evaluation, examples, safe preview, active fixture boundary, and deployed control configuration",
+          "observedAt": "2026-07-24T04:25:22Z",
+          "environment": "Azure Container Apps temporary anonymous demo",
+          "classification": "synthetic",
+          "execution": "live",
+          "caveat": "Status-only checks do not establish availability, caller authorization, durable limits, or production readiness.",
+          "counts": {
+            "total": 6,
+            "passed": 6,
+            "failed": 0
+          }
         },
         {
           "id": "security.demo-fixture-boundary",
