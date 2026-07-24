@@ -32,10 +32,17 @@ if (process.argv.includes("--check")) {
   validateCatalog(JSON.parse(await readFile(destination, "utf8")), destination);
   console.log(`Validated approved resume catalog at ${destination}`);
 } else {
-  const source = resolve(
-    process.env.RESUME_CATALOG_SOURCE ?? process.argv[2] ?? "../portfolio-site/public/data/approved-projects.json",
-  );
-  const catalog = validateCatalog(JSON.parse(await readFile(source, "utf8")), source);
+  const requestedSource =
+    process.env.RESUME_CATALOG_SOURCE ?? process.argv[2] ?? "../portfolio-site/public/data/approved-projects.json";
+  const remote = /^https:\/\//.test(requestedSource);
+  const source = remote ? requestedSource : resolve(requestedSource);
+  const body = remote
+    ? await fetch(source).then((response) => {
+        if (!response.ok) throw new Error(`${source}: ${response.status}`);
+        return response.text();
+      })
+    : await readFile(source, "utf8");
+  const catalog = validateCatalog(JSON.parse(body), source);
   await mkdir(dirname(destination), { recursive: true });
   await writeFile(destination, `${JSON.stringify({ ...catalog, importedFrom: source }, null, 2)}\n`);
   console.log(`Synchronized ${catalog.projects.length} approved projects from ${source}`);
