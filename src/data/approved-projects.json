@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "generatedAt": "2026-07-24T18:52:24.929Z",
+  "generatedAt": "2026-07-24T20:06:12.793Z",
   "projects": [
     {
       "slug": "legal-discovery-intelligence-graph",
@@ -186,7 +186,7 @@
       ],
       "source": {
         "repository": "vaibhavkhuranaaa/legal-document-intelligence-rag",
-        "sourceRef": "37d75307e69ede82cdd520af483eb4a317292309",
+        "sourceRef": "d18ef4a427dc6db66bd3d12c43cc941d5b1a0ba7",
         "url": "https://github.com/vaibhavkhuranaaa/legal-document-intelligence-rag"
       },
       "deployment": {
