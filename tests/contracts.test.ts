@@ -32,7 +32,7 @@ test("V1 exports migrate contact links, dates, technologies, and bullets into V2
 });
 
 test("only live-profile verified deployments can be used as project-title links", () => {
-  assert.equal(getVerifiedProjectLiveUrl("legal-discovery-intelligence-graph"), null);
+  assert.equal(getVerifiedProjectLiveUrl("legal-discovery-intelligence-graph"), "https://legal-discovery-intelligence-graph.onrender.com");
   assert.equal(getVerifiedProjectLiveUrl("financial-payments-fraud-pipeline"), null);
   assert.equal(getVerifiedProjectLiveUrl("unknown-project"), null);
 });

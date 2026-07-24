@@ -19,29 +19,28 @@ export type ReviewedResumeContent = {
 // deployment state, and evidence records come only from the generated catalog.
 export const reviewedResumeContent: Record<string, ReviewedResumeContent> = {
   "legal-discovery-intelligence-graph": {
-    sourceRef: "8879c55997a475ea08b158fb689d1d7698d1fb16",
+    sourceRef: "c893da65f17121cf8616f1865f946efec2cf935d",
     variants: {
       legal: {
         bullets: [
           {
-            text: "Built a Graph RAG investigation workspace combining cited evidence, entity relationships, vector retrieval, and reproducible evaluation for legal-data research.",
+            text: "Built and deployed a Graph RAG investigation workspace with Flask, pgvector, Neo4j, ONNX embeddings, cited evidence, and calibrated refusal over a 455-document synthetic corpus.",
             evidenceRefs: [
-              "legacy:legal-discovery-intelligence-graph:metric:1",
-              "legacy:legal-discovery-intelligence-graph:metric:2",
-              "legacy:legal-discovery-intelligence-graph:metric:3"
+              "evaluation.entity-extraction",
+              "evaluation.hybrid-retrieval",
+              "deployment.render-root"
             ],
           },
         ],
-        technologyOrder: ["Python", "LangChain", "Neo4j AuraDB", "PostgreSQL + pgvector", "Streamlit"],
+        technologyOrder: ["Python", "Flask", "PostgreSQL + pgvector", "Neo4j AuraDB", "ONNX Runtime"],
       },
       general: {
         bullets: [
           {
-            text: "Built a Graph RAG workspace combining vector search, entity relationships, cited evidence, and reproducible evaluation for complex investigation workflows.",
+            text: "Built an evidence-first investigation workspace combining vector and graph retrieval, cited synthetic documents, calibrated refusal, and reproducible evaluation.",
             evidenceRefs: [
-              "legacy:legal-discovery-intelligence-graph:metric:1",
-              "legacy:legal-discovery-intelligence-graph:metric:2",
-              "legacy:legal-discovery-intelligence-graph:metric:3"
+              "evaluation.entity-extraction",
+              "evaluation.hybrid-retrieval"
             ],
           },
         ],
@@ -49,16 +48,16 @@ export const reviewedResumeContent: Record<string, ReviewedResumeContent> = {
     },
   },
   "legal-document-intelligence-rag": {
-    sourceRef: "60545cfc30ecd1af1c53072b381b0309a9524e50",
+    sourceRef: "feeefeba500881f6624edf984340f618b2b41bb8",
     variants: {
       legal: {
         bullets: [
           {
-            text: "Built a citation-grounded document-intelligence workflow over public Delaware M&A litigation using Azure extraction, search, and retrieval-augmented generation.",
+            text: "Built an Azure RAG workspace with citation-required generation over 3,055 chunks derived from registered public legal documents.",
             evidenceRefs: [
-              "legacy:legal-document-intelligence-rag:metric:1",
-              "legacy:legal-document-intelligence-rag:metric:2",
-              "legacy:legal-document-intelligence-rag:metric:3"
+              "evaluation.release-v2",
+              "disclosure.public-corpus",
+              "deployment.azure-root"
             ],
           },
         ],
@@ -66,11 +65,10 @@ export const reviewedResumeContent: Record<string, ReviewedResumeContent> = {
       general: {
         bullets: [
           {
-            text: "Built an Azure document-intelligence RAG workflow that produces citation-grounded answers from controlled public legal source material.",
+            text: "Built and evaluated an evidence-first Azure document-intelligence workflow with traceable citations and an explicit refusal path.",
             evidenceRefs: [
-              "legacy:legal-document-intelligence-rag:metric:1",
-              "legacy:legal-document-intelligence-rag:metric:2",
-              "legacy:legal-document-intelligence-rag:metric:3"
+              "evaluation.release-v2",
+              "disclosure.public-corpus"
             ],
           },
         ],
