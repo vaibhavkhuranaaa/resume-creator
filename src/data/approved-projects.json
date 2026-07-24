@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "generatedAt": "2026-07-24T20:06:12.793Z",
+  "generatedAt": "2026-07-24T20:11:07.347Z",
   "projects": [
     {
       "slug": "legal-discovery-intelligence-graph",
@@ -350,7 +350,7 @@
       ],
       "source": {
         "repository": "vaibhavkhuranaaa/text-to-sql-guardrails",
-        "sourceRef": "82fb2f9904aa9ec220b70598b4c9a74c7e72bcd9",
+        "sourceRef": "ab2e2b590dc657cfa85cb86dc7078ff986f67d40",
         "url": "https://github.com/vaibhavkhuranaaa/text-to-sql-guardrails"
       },
       "deployment": {
