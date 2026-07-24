@@ -75,4 +75,40 @@ export const reviewedResumeContent: Record<string, ReviewedResumeContent> = {
       },
     },
   },
+  "text-to-sql-guardrails": {
+    sourceRef: "9b05287ce2598ad82920fc1c1dd19c1b62aec3f9",
+    variants: {
+      finance: {
+        bullets: [
+          {
+            text: "Built an approval-gated Text-to-SQL service with Azure OpenAI, Microsoft Entra ID, SQLGlot, FastAPI, and read-only DuckDB execution, matching all 18 deterministic safety and correctness cases.",
+            evidenceRefs: [
+              "evaluation.local-policy",
+              "integration.entra-proposal-lifecycle"
+            ],
+          },
+          {
+            text: "Deployed a scale-to-zero Azure Container Apps demo with immutable image, synthetic-data boundary, rate/budget controls, and explicit non-production limitations.",
+            evidenceRefs: [
+              "deployment.temporary-demo",
+              "security.container-data-boundary",
+              "disclosure.synthetic-data"
+            ],
+          },
+        ],
+        technologyOrder: ["Python", "FastAPI", "SQLGlot", "DuckDB", "Azure OpenAI", "Azure Container Apps"],
+      },
+      general: {
+        bullets: [
+          {
+            text: "Designed and deployed a guarded natural-language analytics workflow that separates model proposals, deterministic SQL policy, human approval, and bounded read-only execution.",
+            evidenceRefs: [
+              "evaluation.local-policy",
+              "deployment.temporary-demo"
+            ],
+          },
+        ],
+      },
+    },
+  },
 };

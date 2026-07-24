@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "generatedAt": "2026-07-24T04:20:00.000Z",
+  "generatedAt": "2026-07-24T04:28:00.000Z",
   "projects": [
     {
       "slug": "legal-document-intelligence-rag",
@@ -276,6 +276,172 @@
           "bullet": "Evaluated vector and graph-expanded retrieval by query category, improving relationship-query hit@5 from 0.500 to 0.833 while documenting dense-corpus tradeoffs.",
           "evidenceRefs": [
             "evaluation.hybrid-retrieval"
+          ]
+        }
+      ]
+    },
+    {
+      "slug": "text-to-sql-guardrails",
+      "title": "Text-to-SQL Interface with Guardrails and Hallucination Detection",
+      "summary": "An approval-gated analyst console that turns bounded natural-language questions into policy-checked, read-only SQL over disclosed synthetic data.",
+      "outcome": "Reviewers can inspect SQL, assumptions, schema lineage, policy checks, and a bounded result preview before one single-use execution; unsafe, malformed, identifier-exposing, and hallucinated-schema queries fail closed.",
+      "industries": [
+        "Financial services"
+      ],
+      "categories": [
+        "AI/ML",
+        "Data Engineering",
+        "Cloud"
+      ],
+      "stack": [
+        "Python",
+        "FastAPI",
+        "DuckDB",
+        "SQLGlot",
+        "Azure OpenAI",
+        "Microsoft Entra ID",
+        "Azure Container Apps",
+        "Docker",
+        "OpenTelemetry"
+      ],
+      "source": {
+        "repository": "vaibhavkhuranaaa/text-to-sql-guardrails",
+        "sourceRef": "9b05287ce2598ad82920fc1c1dd19c1b62aec3f9",
+        "url": "https://github.com/vaibhavkhuranaaa/text-to-sql-guardrails"
+      },
+      "deployment": {
+        "provider": "Azure Container Apps",
+        "status": "temporary-demo",
+        "runtime": "Scale-to-zero FastAPI container using the committed demo fixture and ephemeral SQLite proposal state",
+        "exposure": "anonymous",
+        "productionClaim": false,
+        "verifiedAt": "2026-07-24T04:25:22.107862Z",
+        "expiresAt": "2026-08-06T23:59:59Z",
+        "evidenceRefs": [
+          "deployment.temporary-demo",
+          "security.demo-fixture-boundary"
+        ],
+        "liveUrl": "https://ca-text-sql-guardrails-dev.whitesky-593b85cb.eastus.azurecontainerapps.io"
+      },
+      "disclosure": {
+        "source": "Hand-authored synthetic demo fixture inspired by the MoMTSim V2 synthetic mobile-money dataset (DOI 10.17632/zhj366m53p.2)",
+        "license": "MoMTSim V2 is CC BY 4.0; the deployed rows are repository-authored synthetic fixtures rather than redistributed source rows",
+        "classification": "synthetic",
+        "permittedUse": "Portfolio demonstration, deterministic evaluation, and bounded analyst-workflow review",
+        "includedFields": [
+          "Synthetic payment date, amount, status, channel, country, and segment",
+          "Synthetic payment and customer keys used only as internal fixture join mechanics"
+        ],
+        "excludedFields": [
+          "Source initiator and recipient account identifiers",
+          "Real customer, cardholder, bank, credential, and personal data",
+          "Identifier-like fields in model context and public result previews",
+          "The locally generated 4,225,958-row approved DuckDB snapshot"
+        ],
+        "deployedArtifactContents": [
+          "Application source and runtime dependencies",
+          "Hand-authored synthetic payments fixture",
+          "Aggregate deterministic evaluation report",
+          "Dataset provenance and checksum manifest",
+          "No raw source CSV and no data/approved snapshot artifact"
+        ]
+      },
+      "evidence": [
+        {
+          "id": "evaluation.local-policy",
+          "kind": "evaluation",
+          "claim": "All 18 deterministic policy cases matched their expected trusted or refused outcomes.",
+          "source": "evaluation/report.json",
+          "method": "uv run python scripts/run_evaluation.py against the committed synthetic fixture",
+          "result": "18/18 expected outcomes"
+        },
+        {
+          "id": "deployment.temporary-demo",
+          "kind": "deployment",
+          "claim": "Six status-only public route, fixture-boundary, and deployed-control checks passed for the anonymous temporary demo.",
+          "source": "evidence/deployment/temporary-demo.json",
+          "method": "HTTP checks with response bodies limited to status and disclosed fixture metadata",
+          "result": "revision 0000007 / 6 checks passed"
+        },
+        {
+          "id": "security.demo-fixture-boundary",
+          "kind": "security",
+          "claim": "The active public revision reports the committed demo fixture, not the local approved snapshot.",
+          "source": "evidence/deployment/temporary-demo.json",
+          "method": "Verified /v1/status snapshot state and fixture SHA-256",
+          "result": "demo_fixture"
+        },
+        {
+          "id": "security.container-data-boundary",
+          "kind": "security",
+          "claim": "The container build context excludes raw source files and data/approved artifacts while retaining only the disclosed fixture and aggregate evidence.",
+          "source": ".dockerignore and scripts/verify_container_boundary.py",
+          "method": "Build the image and run the boundary verifier inside that image",
+          "result": "verified in Azure-built image sha256:fb11bdf14321e18fb835670154b737a3d4ff6d81c5c29ebba4f79c9c47bc7e53"
+        },
+        {
+          "id": "disclosure.synthetic-data",
+          "kind": "disclosure",
+          "claim": "The deployed dataset is hand-authored synthetic data and source account identifiers are excluded from the approved snapshot contract.",
+          "source": "data/PROVENANCE.md and data/source_manifest.json",
+          "method": "Versioned provenance, license, source checksums, and curated-field classification",
+          "result": "synthetic / CC BY 4.0 source attribution"
+        },
+        {
+          "id": "integration.entra-proposal-lifecycle",
+          "kind": "review",
+          "claim": "An owner-authenticated local lifecycle generated, approved once, revalidated, and executed a bounded aggregate proposal.",
+          "source": "docs/HANDOFF.md",
+          "method": "Status-level local integration verification using Microsoft Entra ID; no token, question, SQL, or rows retained",
+          "result": "verified locally; not a public SLO"
+        }
+      ],
+      "portfolio": {
+        "status": "approved",
+        "approvedAt": "2026-07-23",
+        "featured": false,
+        "sortOrder": 30
+      },
+      "narrative": {
+        "recruiterSummary": "Natural-language analytics is attractive because it lowers the barrier to data access, but executing model-generated SQL directly creates obvious security, privacy, and correctness risk. This project turns that risky shortcut into a reviewable workflow: the model may propose, a deterministic policy engine must validate, and a person must approve one bounded read-only preview.",
+        "technicalNarrative": "FastAPI separates proposal from execution. Azure OpenAI receives only an identifier-excluding semantic catalog through Microsoft Entra authentication; SQLGlot checks statement shape, functions, tables, columns, identifier projection, and ranking semantics; DuckDB EXPLAIN and resource limits run before a short-lived approval can be consumed. Execution revalidates both SQL policy and the active snapshot checksum.",
+        "limitations": [
+          "The current endpoint is anonymous and has no caller authorization.",
+          "The deployed rate and proposal-budget controls are process-local and reset after scale-to-zero or restart.",
+          "Approval state is ephemeral and single-replica.",
+          "The model can still propose semantically wrong SQL, so human review remains mandatory.",
+          "The demo expiry requires owner teardown; the application cannot delete its own Azure resources."
+        ],
+        "scalabilityRoadmap": [
+          "Replace ephemeral SQLite with an owner-approved transactional store and prove cross-replica single-use consumption",
+          "Enable single-tenant Microsoft Entra authentication and verify unauthenticated denial",
+          "Replace process-local rate and proposal budgets with durable distributed controls before multi-replica hosting",
+          "Add alerting, budget ownership, availability/error monitoring, and an owner-approved load envelope",
+          "Expand semantic evaluation with reviewer-approved equivalent SQL rather than literal query matching"
+        ]
+      },
+      "resumeBulletCandidates": [
+        {
+          "role": "AI Engineer",
+          "bullet": "Built an approval-gated Text-to-SQL service with Azure OpenAI, Microsoft Entra ID, SQLGlot, FastAPI, and read-only DuckDB execution, matching expected outcomes across 18 deterministic safety and correctness cases.",
+          "evidenceRefs": [
+            "evaluation.local-policy",
+            "integration.entra-proposal-lifecycle"
+          ]
+        },
+        {
+          "role": "Data Engineer",
+          "bullet": "Designed a checksum-pinned synthetic-data release boundary that removes source account identifiers, blocks raw and approved snapshots from the container image, and exposes only classified fields to model context and previews.",
+          "evidenceRefs": [
+            "security.container-data-boundary",
+            "disclosure.synthetic-data"
+          ]
+        },
+        {
+          "role": "Cloud AI Engineer",
+          "bullet": "Delivered and verified a scale-to-zero Azure Container Apps demo with immutable revision, image-digest, fixture-boundary, and deployed-control evidence while explicitly separating anonymous exposure from production readiness.",
+          "evidenceRefs": [
+            "deployment.temporary-demo"
           ]
         }
       ]
