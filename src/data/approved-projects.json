@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "generatedAt": "2026-07-24T17:50:09.690Z",
+  "generatedAt": "2026-07-24T18:02:34.388Z",
   "projects": [
     {
       "slug": "legal-document-intelligence-rag",
@@ -24,7 +24,7 @@
       ],
       "source": {
         "repository": "vaibhavkhuranaaa/legal-document-intelligence-rag",
-        "sourceRef": "bc485d84eb4b4a6ee518787a832c6693d82c0d7f",
+        "sourceRef": "37d75307e69ede82cdd520af483eb4a317292309",
         "url": "https://github.com/vaibhavkhuranaaa/legal-document-intelligence-rag"
       },
       "deployment": {
@@ -188,7 +188,7 @@
       ],
       "source": {
         "repository": "vaibhavkhuranaaa/legal-discovery-intelligence-graph",
-        "sourceRef": "f623ef559d8ac224354df42516346f44866515ae",
+        "sourceRef": "fb1d0a731879b743e03eeca06e4b8120d573b66b",
         "url": "https://github.com/vaibhavkhuranaaa/legal-discovery-intelligence-graph"
       },
       "deployment": {
@@ -350,7 +350,7 @@
       ],
       "source": {
         "repository": "vaibhavkhuranaaa/text-to-sql-guardrails",
-        "sourceRef": "9544536cb6355cf1ea4d34fbbc73b4fa645afdfe",
+        "sourceRef": "82fb2f9904aa9ec220b70598b4c9a74c7e72bcd9",
         "url": "https://github.com/vaibhavkhuranaaa/text-to-sql-guardrails"
       },
       "deployment": {
