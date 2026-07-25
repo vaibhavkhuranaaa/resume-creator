@@ -76,7 +76,7 @@ export const reviewedResumeContent: Record<string, ReviewedResumeContent> = {
     },
   },
   "text-to-sql-guardrails": {
-    sourceRef: "82fb2f9904aa9ec220b70598b4c9a74c7e72bcd9",
+    sourceRef: "64aa8248467c0baf505b109d58031833bd8a85aa",
     variants: {
       finance: {
         bullets: [
@@ -90,7 +90,7 @@ export const reviewedResumeContent: Record<string, ReviewedResumeContent> = {
           {
             text: "Deployed a scale-to-zero Azure Container Apps demo with immutable image, synthetic-data boundary, rate/budget controls, and explicit non-production limitations.",
             evidenceRefs: [
-              "deployment.temporary-demo",
+              "deployment.anonymous-live-demo",
               "security.container-data-boundary",
               "disclosure.synthetic-data"
             ],
@@ -104,7 +104,7 @@ export const reviewedResumeContent: Record<string, ReviewedResumeContent> = {
             text: "Designed and deployed a guarded natural-language analytics workflow that separates model proposals, deterministic SQL policy, human approval, and bounded read-only execution.",
             evidenceRefs: [
               "evaluation.local-policy",
-              "deployment.temporary-demo"
+              "deployment.anonymous-live-demo"
             ],
           },
         ],
