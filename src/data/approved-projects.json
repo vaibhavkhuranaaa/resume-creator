@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "generatedAt": "2026-07-25T22:10:31.674Z",
+  "generatedAt": "2026-07-26T22:47:51.531Z",
   "projects": [
     {
       "slug": "legal-discovery-intelligence-graph",
@@ -350,7 +350,7 @@
       ],
       "source": {
         "repository": "vaibhavkhuranaaa/text-to-sql-guardrails",
-        "sourceRef": "64aa8248467c0baf505b109d58031833bd8a85aa",
+        "sourceRef": "c5024f82af435805c3411344bab0bcbd8fa34378",
         "url": "https://github.com/vaibhavkhuranaaa/text-to-sql-guardrails"
       },
       "deployment": {
@@ -459,6 +459,20 @@
           "source": "docs/HANDOFF.md",
           "method": "Status-level local integration verification using Microsoft Entra ID; no token, question, SQL, or rows retained",
           "result": "verified locally; not a public SLO"
+        },
+        {
+          "id": "operational.m6-alert-readiness",
+          "kind": "deployment",
+          "claim": "The anonymous non-production target has a redacted owner notification route, bounded budget thresholds, and aggregate stderr and latency alerts.",
+          "source": "evidence/m6/operational-observation.json",
+          "method": "Read-only Azure configuration observation with recipient and log data excluded",
+          "result": "one enabled action group, $30 monthly budget, and two enabled five-minute scheduled-query alerts",
+          "scope": "Existing zero-to-one-replica Azure Container App demo",
+          "observedAt": "2026-07-25T21:57:52Z",
+          "environment": "Azure non-production demo",
+          "classification": "aggregate-only operational configuration",
+          "execution": "live",
+          "caveat": "Budgets do not prevent spend; alerts and process-local telemetry do not establish availability, SLO, or production readiness."
         }
       ],
       "portfolio": {
