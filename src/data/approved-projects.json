@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "generatedAt": "2026-07-26T23:23:01.598Z",
+  "generatedAt": "2026-07-26T23:23:31.219Z",
   "projects": [
     {
       "slug": "legal-discovery-intelligence-graph",
@@ -526,5 +526,5 @@
       ]
     }
   ],
-  "importedFrom": "/Users/vaibhavkhurana/Development/portfolio-site/public/data/approved-projects.json"
+  "importedFrom": "https://portfolio-reeper1.vercel.app/data/approved-projects.json"
 }
